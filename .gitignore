@@ -14,6 +14,9 @@ logs
 *.tgz
 build/Release
 
+# HTTP tests
+requests.sh
+
 # Vite / React build
 dist/
 .vite/
