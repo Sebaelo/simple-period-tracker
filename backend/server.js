@@ -3,6 +3,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(cookieParser())
 
 // Routes
 app.use("/api/auth", authRoutes);
