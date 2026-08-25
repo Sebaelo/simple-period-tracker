@@ -12,9 +12,13 @@ export function periodCalculations(startDate) {
   const fertileEnd = new Date(startDate);
   fertileEnd.setUTCDate(date.getUTCDate() + 15);
 
+  const autoEndDate = new Date(startDate);
+  autoEndDate.setUTCDate(date.getUTCDate() + 5);
+
   return {
     nextPeriod: formatDate(nextPeriod),
     fertileStart: formatDate(fertileStart),
     fertileEnd: formatDate(fertileEnd),
+    autoEndDate: formatDate(autoEndDate),
   };
 }
