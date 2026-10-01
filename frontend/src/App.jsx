@@ -1,5 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router";
+import Calendar from "./pages/Calendar";
+
 function App() {
-  return <></>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Calendar />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

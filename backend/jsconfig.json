@@ -4,14 +4,8 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "allowJs": true,
-    "checkJs": true,
-    "jsx": "react-jsx"
+    "checkJs": true
   },
-  "include": [
-    "**/*.js",
-    "**/*.jsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
 }
