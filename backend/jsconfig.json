@@ -4,7 +4,8 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "strict": false
   },
   "include": ["**/*.js"],
   "exclude": ["node_modules"]

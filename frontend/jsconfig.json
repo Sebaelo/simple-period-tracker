@@ -5,6 +5,7 @@
     "moduleResolution": "bundler",
     "allowJs": true,
     "checkJs": true,
+    "strict": false,
     "jsx": "react-jsx"
   },
   "include": ["src"]
