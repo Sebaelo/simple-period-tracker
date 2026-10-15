@@ -1,3 +1,8 @@
+// TODO: REFACTOR
+// 1. Create variables for .getFullYear() and .getMonth()
+// 2. Condense daysInMonth, dayNumbers and getDayName into one function
+// 3. Group everything up more logically if needed and add comments
+
 import { useState } from "react";
 
 export default function Calendar() {
@@ -17,8 +22,6 @@ export default function Calendar() {
 
   // ---------- Building the calendar grid ----------
 
-  // Getting the total amount of days in the month and turning it into an array
-
   const daysInMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
@@ -26,6 +29,14 @@ export default function Calendar() {
   ).getDate();
 
   const dayNumbers = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  function getDayName(day) {
+    return new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day,
+    ).toLocaleDateString("default", { weekday: "short" });
+  }
 
   const firstWeekday = new Date(
     currentDate.getFullYear(),
@@ -35,8 +46,8 @@ export default function Calendar() {
 
   const leadingBlanksCount = (firstWeekday + 6) % 7;
   const leadingBlanks = Array.from({ length: leadingBlanksCount }, () => null);
-  const totalCells = dayNumbers.length + leadingBlanks.length;
 
+  const totalCells = dayNumbers.length + leadingBlanks.length;
   const trailingBlanksCount = (7 - (totalCells % 7)) % 7;
   const trailingBlanks = Array.from(
     { length: trailingBlanksCount },
@@ -47,7 +58,7 @@ export default function Calendar() {
 
   return (
     <div>
-      <div className="mx-auto flex w-80 justify-between gap-2">
+      <header className="mx-auto flex w-80 justify-between gap-2">
         <button className="cursor-pointer" onClick={previousMonth}>
           {/* Left arrow <- */}
           <svg
@@ -66,7 +77,7 @@ export default function Calendar() {
           </svg>
         </button>
         <h1 className="text-3xl">
-          {currentDate.toLocaleString("default", { month: "long" })}
+          {currentDate.toLocaleDateString("default", { month: "long" })}
           {", "}
           {currentDate.getFullYear()}
         </h1>
@@ -87,15 +98,21 @@ export default function Calendar() {
             />
           </svg>
         </button>
-      </div>
+      </header>
+
       <div className="p-4">
-        <ol className="mx-auto grid max-w-7xl rounded border-t-2 border-l-2 sm:grid-cols-7">
+        <ol className="mx-auto grid max-w-7xl gap-0.5 rounded border-2 bg-black sm:grid-cols-7">
           {calendarGrid.map((day, index) => (
             <li
               key={index}
-              className="h-32 border-r-2 border-b-2 p-4 text-2xl sm:p-2 sm:text-xl"
+              className="h-32 bg-white p-4 text-2xl sm:p-2 sm:text-xl"
             >
-              {day}
+              {day && (
+                <div className="flex gap-2">
+                  <span>{day}</span>
+                  <span>{getDayName(day)}</span>
+                </div>
+              )}
             </li>
           ))}
         </ol>
